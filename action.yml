@@ -37,5 +37,5 @@ runs:
       run: docker login --username ${{ inputs.docker-user }} --password ${{ inputs.dockerhub-token }}
       shell: bash
     - name: Docker build
-      run: docker build -t ${{ inputs.docker-user }}/${{ inputs.app-name }}:${{ inputs.version }} -t ${{ inputs.docker-user }}/${{ inputs.project-name }}:latest .
+      run: docker build -t ${{ inputs.docker-user }}/${{ inputs.app-name }}:${{ inputs.version }} -t ${{ inputs.docker-user }}/${{ inputs.app-name }}:latest .
       shell: bash
