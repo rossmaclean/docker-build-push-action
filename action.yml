@@ -1,5 +1,5 @@
-name: "Docker Cloudron"
-description: "Greet someone and record the time"
+name: "Docker Build Push"
+description: "Build and push Docker image"
 branding:
   icon: "upload-cloud"
   color: "blue"
@@ -8,20 +8,11 @@ inputs:
   docker-user:
     description: "Docker user to use when uploading container"
     required: true
-  app-name:
-    description: "Application name for Dockerhub"
-    required: true
-  cloudron-server:
-    description: "FQDN of Cloudron server e.g. my.server.com"
-    required: true
-  app-domain:
-    description: "Domain under which the app will be install in Cloudron .e.g. myapp.server.com"
+  image-name:
+    description: "Image name"
     required: true
   dockerhub-token:
     description: "Dockerhub token"
-    required: true
-  cloudron-token:
-    description: "Cloudron token"
     required: true
   version:
     description: "App version"
@@ -31,11 +22,11 @@ runs:
   steps:
     - uses: actions/checkout@v2
     - name: Print version
-      run: echo "Version ${GITHUB_SHA::7}"
+      run: echo "Version ${{ inputs.version }}"
       shell: bash
     - name: Docker login
       run: docker login --username ${{ inputs.docker-user }} --password ${{ inputs.dockerhub-token }}
       shell: bash
     - name: Docker build
-      run: docker build -t ${{ inputs.docker-user }}/${{ inputs.app-name }}:${{ inputs.version }} -t ${{ inputs.docker-user }}/${{ inputs.app-name }}:latest .
+      run: docker build -t ${{ inputs.docker-user }}/${{ inputs.image-name }}:${{ inputs.version }} -t ${{ inputs.docker-user }}/${{ inputs.image-name }}:latest .
       shell: bash
