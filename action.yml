@@ -1,5 +1,7 @@
 name: 'Hello World Ross'
 description: 'Greet someone and record the time'
+icon: 'upload-cloud'
+color: 'blue'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
