@@ -1,17 +1,19 @@
-name: 'Hello World Ross'
-description: 'Greet someone and record the time'
-icon: 'upload-cloud'
-color: 'blue'
+name: "Docker Cloudron"
+description: "Greet someone and record the time"
+branding:
+  icon: "upload-cloud"
+  color: "blue"
+author: "Ross MacLean"
 inputs:
   who-to-greet:  # id of input
-    description: 'Who to greet'
+    description: "Who to greet"
     required: true
-    default: 'World'
+    default: "World"
 outputs:
   time: # id of output
-    description: 'The time we greeted you'
+    description: "The time we greeted you"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.who-to-greet }}
