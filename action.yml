@@ -34,7 +34,7 @@ runs:
       run: echo "Version ${GITHUB_SHA::7}"
       shell: bash
     - name: Docker login
-      run: docker login --username ${{ inputs.docker-user }} --password ${{ inputs.dockerhub_token }}
+      run: docker login --username ${{ inputs.docker-user }} --password ${{ inputs.dockerhub-token }}
       shell: bash
     - name: Docker build
       run: docker build -t ${{ inputs.docker-user }}/${{ inputs.project-name }}:${{ inputs.version }} -t ${{ inputs.docker-user }}/${{ inputs.project-name }}:latest .
