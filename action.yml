@@ -5,15 +5,37 @@ branding:
   color: "blue"
 author: "Ross MacLean"
 inputs:
-  who-to-greet:  # id of input
-    description: "Who to greet"
+  docker-user:
+    description: "Docker user to use when uploading container"
     required: true
-    default: "World"
-outputs:
-  time: # id of output
-    description: "The time we greeted you"
+  app-name:
+    description: "Application name for Dockerhub"
+    required: true
+  cloudron-server:
+    description: "FQDN of Cloudron server e.g. my.server.com"
+    required: true
+  app-domain:
+    description: "Domain under which the app will be install in Cloudron .e.g. myapp.server.com"
+    required: true
+  dockerhub-token:
+    description: "Dockerhub token"
+    required: true
+  cloudron-token:
+    description: "Cloudron token"
+    required: true
+  version:
+    description: "App version"
+    required: true
 runs:
-  using: "docker"
-  image: "Dockerfile"
-  args:
-    - ${{ inputs.who-to-greet }}
+  using: composite
+  steps:
+    - uses: actions/checkout@v2
+    - name: Print version
+      run: echo "Version ${GITHUB_SHA::7}"
+      shell: bash
+    - name: Docker login
+      run: docker login --username ${{ env.DOCKER_USER }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+      shell: bash
+    - name: Docker build
+      run: docker build -t ${{ env.DOCKER_USER }}/${{ env.PROJECT_NAME }}:${GITHUB_SHA::7} -t ${{ env.DOCKER_USER }}/${{ env.PROJECT_NAME }}:latest .
+      shell: bash
