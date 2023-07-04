@@ -32,8 +32,9 @@ runs:
       with:
         username: ${{ inputs.docker-user }}
         password: ${{ inputs.dockerhub-token }}
-    - name: Build and push
-      uses: docker/build-push-action@v4
-      with:
-        push: true
-        tags: ${{ inputs.docker-user }}/${{ inputs.image-name }}:${{ inputs.version }}
+    - name: Docker build
+      run: docker build -t ${{ inputs.docker-user }}/${{ inputs.image-name }}:${{ inputs.version }} -t ${{ inputs.docker-user }}/${{ inputs.image-name }}:latest .
+      shell: bash
+    - name: Docker push
+      run: docker push --all-tags ${{ inputs.docker-user }}/${{ inputs.image-name }}
+      shell: bash
