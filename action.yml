@@ -20,6 +20,7 @@ inputs:
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v3
     - name: Print version
       run: echo "Version ${{ inputs.version }}"
       shell: bash
