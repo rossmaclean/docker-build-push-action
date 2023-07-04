@@ -33,7 +33,7 @@ runs:
         username: ${{ inputs.docker-user }}
         password: ${{ inputs.dockerhub-token }}
     - name: Docker build
-      run: docker build -t ${{ inputs.docker-user }}/${{ inputs.image-name }}:${{ inputs.version }} -t ${{ inputs.docker-user }}/${{ inputs.image-name }}:latest .
+      run: "docker build -t ${{ inputs.docker-user }}/${{ inputs.image-name }}:${{ inputs.version }} -t ${{ inputs.docker-user }}/${{ inputs.image-name }}:latest ."
       shell: bash
     - name: Docker push
       run: docker push --all-tags ${{ inputs.docker-user }}/${{ inputs.image-name }}
