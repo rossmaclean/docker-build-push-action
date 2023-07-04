@@ -36,4 +36,4 @@ runs:
       uses: docker/build-push-action@v4
       with:
         push: true
-        tags: ${{ inputs.docker-user }}/{{ inputs.image-name }}:{{ inputs.version }}
+        tags: ${{ inputs.docker-user }}/${{ inputs.image-name }}:${{ inputs.version }}
