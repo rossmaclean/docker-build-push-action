@@ -41,5 +41,5 @@ runs:
       run: "docker build -t ${{ inputs.docker-registry-url }}/${{ inputs.docker-user }}/${{ inputs.image-name }}:${{ inputs.version }} -t ${{ inputs.docker-registry-url }}/${{ inputs.docker-user }}/${{ inputs.image-name }}:latest ."
       shell: bash
     - name: Docker push
-      run: docker push --all-tags ${{ inputs.docker-user }}/${{ inputs.image-name }}
+      run: docker push --all-tags ${{ inputs.docker-registry-url }}/${{ inputs.docker-user }}/${{ inputs.image-name }}
       shell: bash
