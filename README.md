@@ -20,6 +20,13 @@ The image name which will be used when building/pushing the image
 
 The token used to push the image.
 
+### Docker Registry URL
+ - **Key**: docker-registry-url
+ - **Required**: false
+ - **Default**: docker.io
+
+URL for the Docker registry
+
 ### Version
 - **Key**: version
 - **Required**: true
